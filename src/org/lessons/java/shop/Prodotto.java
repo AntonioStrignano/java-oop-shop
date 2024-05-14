@@ -13,9 +13,8 @@ modo che:
 - gli altri attributi siano accessibili sia in lettura che in scrittura 
 - il prodotto esponga un metodo per avere il prezzo base 
 - il prodotto esponga un metodo per avere il prezzo comprensivo di iva 
-- il prodotto esponga un metodo per 
-avere il nome esteso, ottenuto concatenando codice-nome Nello stesso package 
-aggiungete una classe Main con metodo main nella quale testate tutte le funzionalità 
+- il prodotto esponga un metodo per avere il nome esteso, ottenuto concatenando codice-nome
+Nello stesso package aggiungete una classe Main con metodo main nella quale testate tutte le funzionalità 
 della classe Prodotto.
 BONUS: create un metodo (statico) che restituisca il codice con un pad left 
 di 0 per arrivare a 8 caratteri (ad esempio codice 91 diventa 00000091, mentre codice 
@@ -53,12 +52,18 @@ public class Prodotto {
 		return code;
 	}
 	
+	//		PREZZATRICE
 	public void prezzatrice() {
 		double prezzoListino = prezzo/IVA;
 		NumberFormat currency = NumberFormat.getCurrencyInstance();
 		String prezzoListinoString = currency.format(prezzoListino);
-		System.out.println("Il prezzo del prodotto é: " + prezzo + "(" + prezzoListinoString + 
-				", di cui IVA " + (prezzo - prezzoListino));
+		System.out.println("Prezzo: " + currency.format(prezzo) +  "(" + prezzoListinoString + 
+				", di cui IVA " + currency.format(prezzo - prezzoListino) + ")");
+	}
+	
+	//  CODICE ESTESO
+	public String codiceEsteso () {
+		return codice + nome.replace(" ","");
 	}
 	
 	//		GETTER E SETTER
@@ -83,7 +88,7 @@ public class Prodotto {
 	public double getIva() {
 		return IVA;
 	}
-	public int getCodice() {
+	public String getCodice() {
 		return codice;
 	}
 	//		/GETTER E SETTER
